@@ -21,7 +21,8 @@ import java.io.IOException;
 
 // INCLUDE HERE THE FULL NAME AND STUDENT NUMBER OF BOTH TEAM MEMBERS 
 // AS A COMMENT!!!!
-//Keith Cavalcante Fernandes 2020353 
+//Keith Cavalcante Fernandes 2020353
+//Douglas Alexandre Costa Santos 2020338
 
 
 /**
