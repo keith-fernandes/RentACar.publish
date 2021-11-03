@@ -88,7 +88,7 @@ public interface CarInterface {
     public boolean isAvailable(Month month, int day);
     
     /**
-     * Book a room on the given month and day. To book a room its availability 
+     * Book a car on the given month and day. To book a car its availability 
      * is changed to false on the given month and day. 
      * This should return true or false if this change is successfully made
      * 
