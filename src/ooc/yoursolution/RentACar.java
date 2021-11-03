@@ -15,7 +15,10 @@ import ooc.enums.Month;
  */
 public class RentACar implements RentACarInterface {
 
-    private List<Car> cars; // to hold the list of the cars 
+    /**
+     * to hold the list of the cars
+     */
+    private List<Car> cars;  
     private String name;
     
     public RentACar(List<Car> cars, String name){
@@ -43,7 +46,17 @@ public class RentACar implements RentACarInterface {
         this.name = name;
     }
 
-    @Override
+    
+    /**
+     * // this will check the availability of all the cars 
+     * and it has to be an specific car
+     * @param month
+     * @param day
+     * @param make
+     * @param lengthOfRent
+     * @return 
+     */
+    @Override 
     public boolean checkAvailability(Month month, int day, Make make, int lengthOfRent) {
       
         int bookingDay, availability;
@@ -66,6 +79,15 @@ public class RentACar implements RentACarInterface {
       return false;       
         
     }
+    
+    /**
+     * this will choose the available car to rent
+     * @param month
+     * @param day
+     * @param make
+     * @param lengthOfRent
+     * @return 
+     */
 
     @Override
     public int getCarAvailable(Month month, int day, Make make, int lengthOfRent) {
@@ -88,7 +110,16 @@ public class RentACar implements RentACarInterface {
         }
         return -1;
     }
-
+    
+    /**
+     * it shows which is the car that is available if it is available 
+     * @param month
+     * @param day
+     * @param make
+     * @param lengthOfRent
+     * @return 
+     */
+    
     @Override
     public boolean bookCar(Month month, int day, Make make, int lengthOfRent) {
     
