@@ -66,6 +66,8 @@ public class Driver {
         System.out.println(rentACar.bookCar(Month.FEBRUARY, 3, Make.FIAT, 10));
         System.out.println(rentACar.bookCar(Month.MARCH, 10, Make.FORD, 12));
         
+        
+        System.out.println(rentACar.getCars().toString());
     }
 
 }

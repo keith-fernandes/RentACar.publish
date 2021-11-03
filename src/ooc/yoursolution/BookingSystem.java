@@ -19,24 +19,24 @@ public class BookingSystem implements BookingSystemInterface {
 
     
     /**
-     * 
-     * @param in
-     * @return
+     * This will read the information about the cars from a file.
+     * @param in BufferedReader 
+     * @return a rentACar class
      * @throws IOException 
      */
     @Override
     public RentACarInterface setupRentACar(BufferedReader in) throws IOException {
     
-        String st, name;
+        String readInfo, nameOfCompany;
         List<Car> cars = new ArrayList<>();
-        name = in.readLine();
+        nameOfCompany = in.readLine();
 
-        while ((st = in.readLine()) != null) {
-            String s[] = st.split(":");
+        while ((readInfo = in.readLine()) != null) {
+            String carInfo[] = readInfo.split(":");
 
-            Make make = Make.valueOf(s[0]);
-            double rate = Double.parseDouble(s[1]);
-            int numCars = Integer.parseInt(s[2]);
+            Make make = Make.valueOf(carInfo[0]);
+            double rate = Double.parseDouble(carInfo[1]);
+            int numCars = Integer.parseInt(carInfo[2]);
 
             for (int i=0; i<numCars; i++) {
                 Car car = new Car(i, make, rate);
@@ -44,7 +44,7 @@ public class BookingSystem implements BookingSystemInterface {
             }
         }
 
-        RentACarInterface rentACarInterface = new RentACar(cars, name);
+        RentACarInterface rentACarInterface = new RentACar(cars, nameOfCompany);
         return rentACarInterface;
     }
     

@@ -48,7 +48,7 @@ public class RentACar implements RentACarInterface {
 
     
     /**
-     * // this will check the availability of all the cars 
+     * This will check the availability of all the cars 
      * and it has to be an specific car
      * @param month
      * @param day
@@ -92,11 +92,11 @@ public class RentACar implements RentACarInterface {
     @Override
     public int getCarAvailable(Month month, int day, Make make, int lengthOfRent) {
     
-        int bookingDay;
-        int availability = 0;
+        int bookingDay, availability;
         
         for(Car car : cars){
             if(car.getMake().equals(make)){
+                availability = 0;
                 bookingDay = day;
                 for (int i=0; i<lengthOfRent; i++){
                     if(!car.isAvailable(month, bookingDay++)){
@@ -104,8 +104,11 @@ public class RentACar implements RentACarInterface {
                      break;
                     }
                 }
-            } if (availability == 0){
+            
+            
+            if (availability == 0){
                 return car.getId();
+                }
             }
         }
         return -1;
@@ -132,7 +135,7 @@ public class RentACar implements RentACarInterface {
             if(car.getId() == carId && car.getMake() == make){
                 int bookingDay = day;
                 for (int i=0; i<lengthOfRent; i++){
-                    car.book(month, bookingDay);
+                    car.book(month, bookingDay++);
                 }
             }
         }
@@ -144,5 +147,9 @@ public class RentACar implements RentACarInterface {
     
         return cars.size();
     }
-    
+
+    @Override
+    public String toString() {
+        return "RentACar{" + "cars=" + cars + ", name=" + name + '}';
+    }
 }

@@ -14,9 +14,9 @@ import ooc.enums.Month;
  *
  * @author dacsa
  */
-public class Car implements CarInterface {
+public final class Car implements CarInterface {
     
-    private int id;
+    private final int id;
     private Make make;
     private double rate;
     private Map<Month, Boolean[]> map;
@@ -27,6 +27,8 @@ public class Car implements CarInterface {
      * @param id
      * @param make 
      * @param rate
+     * @createAvailability() - will create the map of 
+     * availability to each car created
      */
     public Car(int id, Make make, double rate) {
         this.id = id;
@@ -144,5 +146,12 @@ public class Car implements CarInterface {
         return false;
     
     }
+
+    @Override
+    public String toString() {
+        return "\n"+"Car = {" + "id = " + id + ", make = " + make + ", rate = " + rate + "}";
+    }
+    
+    
     
 }
