@@ -62,7 +62,7 @@ public interface RentACarInterface {
      * @param day	Day of start of proposed rent
      * @param make	Make, what sort of car for the proposed rent
      * @param lengthOfRent	how long is the proposed rent for
-     * @return	the id of a room that fits the bill
+     * @return	the id of a car that fits the bill
      */
     public int getCarAvailable(Month month, int day, Make make, int lengthOfRent);
 
@@ -74,7 +74,7 @@ public interface RentACarInterface {
      * @param day	Day of start of proposed rent
      * @param make	Make, what sort of car for the proposed rent
      * @param lengthOfRent	how long is the proposed rent for
-     * @return	true or false has the room been booked
+     * @return	true or false has the car been booked
      */
     public boolean bookCar(Month month, int day, Make make, int lengthOfRent);
     

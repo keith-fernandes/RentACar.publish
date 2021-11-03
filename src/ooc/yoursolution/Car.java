@@ -21,7 +21,24 @@ public class Car implements CarInterface {
     private double rate;
     private Map<Month, Boolean[]> map;
 
-    @Override // creating map for availability with days of the month
+    
+    /**
+     * This will create a car with the given values.
+     * @param id
+     * @param make 
+     * @param rate
+     */
+    public Car(int id, Make make, double rate) {
+        this.id = id;
+        this.make = make;
+        this.rate = rate;
+    }
+    
+    /**
+     * Method to give the month the limits of the days to book a car.
+     * @return map of availability
+     */
+    @Override 
     public Map createAvailability() {
       
         map = new HashMap<>();
@@ -90,8 +107,13 @@ public class Car implements CarInterface {
         return id;
 
     }
-
-    @Override //this will check if the car is available on the chosen day and return the answer
+    /**
+     * This will check if the car is available on the chosen day and month.
+     * @param month
+     * @param day
+     * @return - availability (true or false)
+     */
+    @Override 
     public boolean isAvailable(Month month, int day) {
     
         Boolean[] availability = map.get(month);
@@ -103,7 +125,14 @@ public class Car implements CarInterface {
     
     }
 
-    @Override //book the car and set the day as false
+    /**
+     * This will book the car and set the days of booking 
+     * as unavailable for future bookings
+     * @param month
+     * @param day
+     * @return if the booking is successful or not
+     */
+    @Override 
     public boolean book(Month month, int day) {
    
          if (map.get(month)[day-1]) {
