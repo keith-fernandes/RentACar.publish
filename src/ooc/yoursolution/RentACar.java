@@ -56,7 +56,7 @@ public class RentACar implements RentACarInterface {
      * @param lengthOfRent
      * @return 
      */
-    @Override 
+    @Override                    
     public boolean checkAvailability(Month month, int day, Make make, int lengthOfRent) {
       
         int bookingDay, availability;
@@ -64,7 +64,7 @@ public class RentACar implements RentACarInterface {
         for (Car car : cars){
             if(car.getMake().equals(make)){
                 availability = 0;
-                bookingDay = day;
+                bookingDay = day;                                
                 for (int i=0; i<lengthOfRent; i++){
                     if(!car.isAvailable(month, bookingDay++)){
                         availability = 1;

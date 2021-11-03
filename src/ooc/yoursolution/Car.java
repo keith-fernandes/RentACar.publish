@@ -32,6 +32,7 @@ public class Car implements CarInterface {
         this.id = id;
         this.make = make;
         this.rate = rate;
+        createAvailability();
     }
     
     /**
@@ -95,7 +96,7 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public void setAvailability(Map availability) {
+    public void setAvailability(Map map) {
     
         this.map = map;
     
