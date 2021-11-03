@@ -15,44 +15,103 @@ import ooc.enums.Month;
  */
 public class RentACar implements RentACarInterface {
 
+    private List<Car> cars; // to hold the list of the cars 
+    private String name;
+    
+    public RentACar(List<Car> cars, String name){
+        this.cars = cars;
+        this.name = name;
+    }
+    
     @Override
-    public List<CarInterface> getCars() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List getCars() {
+       return cars;   
     }
 
     @Override
-    public void setCars(List<CarInterface> cars) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setCars(List cars) {
+       this.cars = cars;
     }
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return name;
     }
 
     @Override
     public void setName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.name = name;
     }
 
     @Override
     public boolean checkAvailability(Month month, int day, Make make, int lengthOfRent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      
+        int bookingDay, availability;
+        
+        for (Car car : cars){
+            if(car.getMake().equals(make)){
+                availability = 0;
+                bookingDay = day;
+                for (int i=0; i<lengthOfRent; i++){
+                    if(!car.isAvailable(month, bookingDay++)){
+                        availability = 1;
+                        break;
+                    }
+                }
+                if (availability == 0){
+                    return true;
+                }
+            }
+        }
+      return false;       
+        
     }
 
     @Override
     public int getCarAvailable(Month month, int day, Make make, int lengthOfRent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        int bookingDay;
+        int availability = 0;
+        
+        for(Car car : cars){
+            if(car.getMake().equals(make)){
+                bookingDay = day;
+                for (int i=0; i<lengthOfRent; i++){
+                    if(!car.isAvailable(month, bookingDay++)){
+                     availability = 1;
+                     break;
+                    }
+                }
+            } if (availability == 0){
+                return car.getId();
+            }
+        }
+        return -1;
     }
 
     @Override
     public boolean bookCar(Month month, int day, Make make, int lengthOfRent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        if (!checkAvailability(month, day, make, lengthOfRent)){
+            return false;
+        }
+        int carId = getCarAvailable(month, day, make, lengthOfRent);
+        
+        for(Car car : cars){
+            if(car.getId() == carId && car.getMake() == make){
+                int bookingDay = day;
+                for (int i=0; i<lengthOfRent; i++){
+                    car.book(month, bookingDay);
+                }
+            }
+        }
+        return true;
     }
 
     @Override
     public int getNumberOfCars() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+        return cars.size();
     }
     
 }
